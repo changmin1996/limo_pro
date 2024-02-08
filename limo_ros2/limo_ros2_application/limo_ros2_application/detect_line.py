@@ -1,10 +1,12 @@
 import rclpy
 from rclpy.node import Node 
-from sensor_msgs.msg import Image
-from std_msgs.msg import Int32
-from cv_bridge import CvBridge
+
 import cv2
 import numpy as np
+from cv_bridge import CvBridge
+
+from sensor_msgs.msg import Image
+from std_msgs.msg import Int32
 
 class DetectLine(Node):
     def __init__(self):
@@ -53,7 +55,7 @@ class DetectLine(Node):
         self.roi_ = self.image_[350:400, 0:320]
 
         # Masking the lane
-        hls = cv2.cvtColor(roi_, cv2.COLOR_BGR2HLS)
+        hls = cv2.cvtColor(self.roi_, cv2.COLOR_BGR2HLS)
         self.mask_yellow = cv2.inRange(hls, self.yellow_lane_low, self.yellow_lane_high)
         
         # Calculating the Moment of the lane
