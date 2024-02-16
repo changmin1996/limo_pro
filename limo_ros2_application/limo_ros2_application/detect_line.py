@@ -101,11 +101,11 @@ class DetectLine(Node):
         if M['m00'] > 0:
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
-            cy = 350 + cy
+            cy = self.roi_y_l.value + cy
             self.image_ = cv2.circle(self.image_, (cx, cy), 10,(255, 0, 0), -1)
             distance_to_ref = self.reference_distance.value -cx
-        else: # When limo cannot find lane publish garbage data
-            distance_to_ref = -999
+        else: # When limo cannot find lane publish 0 data
+            distance_to_ref = 0
 
         # Publishing the offset between current distance with lane and reference distance
         dis = Int32()

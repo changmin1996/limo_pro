@@ -18,10 +18,10 @@ class DetectHump(Node):
         self.subscription  # prevent unused variable warning
 
         # parameter for time duration to slow down & thresh hold for pithing velocity 
-        self.declare_parameter('threshold', -1.0)
+        self.declare_parameter('hump_threshold', -0.2)
         self.declare_parameter('slow_down_duration', 2)
 
-        self.threshold=self.get_parameter('threshhold')
+        self.threshold=self.get_parameter('hump_threshold')
         self.slow_down_duration = Duration()
         self.slow_down_duration.sec = self.get_parameter('slow_down_duration').value
 

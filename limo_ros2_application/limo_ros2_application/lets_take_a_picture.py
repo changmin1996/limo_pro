@@ -37,14 +37,15 @@ class LetsTakeAPicture(Node):
 
         # for saving the image
         package_directory = get_package_share_directory('limo_ros2_application')
-        self.picture_directory = package_directory + '/picture'
+        self.picture_directory = package_directory + '/picture/'
         self.picture_index = 1
 
 
     def take_picture(self, request, response):
         if self.sub_flag and request.kimchi: # if all goes well save picture at package + picture directory
-            response.picture = f'{self.picture_index}_pic.jpg'
-            cv2.imwrite(os.path.join(self.picture_directory , response.picture),self.image_)
+            response.picture = f'{self.picture_directory}{self.picture_index}_pic.png'
+            cv2.imwrite(response.picture,self.image_)
+            self.picture_index = self.picture_index + 1
         else:
             response.picture = 'Did you execute the camera driver?'
         return response

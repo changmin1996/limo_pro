@@ -15,8 +15,8 @@
     lane_s_l: 100
 
     # set the reference distance of the lane
-    # higher number the further offet from lane
-    reference_distance: 250
+    # higher number the closer to lane
+    reference_distance: 230
 
     # Region of intererst in detecting lane
     roi_x_h: 320

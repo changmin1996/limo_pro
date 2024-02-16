@@ -6,14 +6,22 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     limo_ros2_application_dir = get_package_share_directory('limo_ros2_application')
     parameters_file_dir = os.path.join(limo_ros2_application_dir, 'params')
-    parameters_file_path = os.path.join(parameters_file_dir, 'detect_line.yaml')
+    detect_line_parameters = os.path.join(parameters_file_dir, 'detect_line.yaml')
+    detect_hump_parameters = os.path.join(parameters_file_dir, 'detect_hump.yaml')
+    limo_control_parameters = os.path.join(parameters_file_dir, 'limo_control.yaml')
     os.environ['FILE_PATH'] = str(parameters_file_dir)
     return LaunchDescription([
         Node(
             package='limo_ros2_application',
+            executable='detect_hump',
+            name='detect_hump',
+            parameters=[detect_hump_parameters]
+        ),
+        Node(
+            package='limo_ros2_application',
             executable='detect_line',
             name='detect_line',
-            parameters=[parameters_file_path]
+            parameters=[detect_line_parameters]
         ),
         Node(
             package='limo_ros2_application',
@@ -23,6 +31,7 @@ def generate_launch_description():
         Node(
             package='limo_ros2_application',
             executable='limo_control',
-            name='limo_control'
+            name='limo_control',
+            parameters=[limo_control_parameters]
         )
     ])
