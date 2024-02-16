@@ -3,9 +3,9 @@
 <package format="3">
   <name>limo_ros2_application</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>application code is here</description>
   <maintainer email="changmin@wego-robotics.com">wego</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
@@ -18,7 +18,7 @@
   <exec_depend>cv_bridge</exec_depend>
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>builtin_interfaces</exec_depend>
-  <exec_depend>limo_msgs</exec_depend>
+  <exec_depend>wego_msgs</exec_depend>
 
   <export>
     <build_type>ament_python</build_type>

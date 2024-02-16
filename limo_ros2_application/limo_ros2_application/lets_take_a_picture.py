@@ -10,7 +10,7 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 
 from ament_index_python.packages import get_package_share_directory
-from limo_msgs.srv import Chalkak
+from wego_msgs.srv import Chalkak
 
 
 class LetsTakeAPicture(Node):

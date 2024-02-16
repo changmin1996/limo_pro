@@ -3,7 +3,7 @@
 <package format="3">
   <name>wego</name>
   <version>1.0.0</version>
-  <description>This package is general package of limo</description>
+  <description>This package is general package of application</description>
   <maintainer email="go.support@wego-robotics.com">wego-robotics</maintainer>
   <license>Apache-2.0</license>
 
