@@ -71,7 +71,7 @@
         </gazebo>
     </xacro:macro>
 
-    <xacro:macro name="limo_depth_camera" params="parent_prefix frame_prefix *joint_pose">
+    <!-- <xacro:macro name="limo_depth_camera" params="parent_prefix frame_prefix *joint_pose">
         <link name='${frame_prefix}_link'>
             <pose>0 0 0 0 0 0</pose>
             <inertial>
@@ -82,7 +82,7 @@
                     iyy="1e-6" iyz="0"
                     izz="1e-6"
                 />
-            </inertial>
+            </inertial> -->
             <!-- <visual name='depth_camera_visual'>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
@@ -95,7 +95,7 @@
                     <emissive>0 0 0 1</emissive>
                 </material>
             </visual> -->
-            <collision name='depth_camera_collision'>
+            <!-- <collision name='depth_camera_collision'>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
                     <box size="0.02 0.06 0.015"/>
@@ -109,9 +109,9 @@
             <child link="${frame_prefix}_link"/>
             <parent link="${parent_prefix}"/>
         </joint>
-        <link name="depth_link"></link>
+        <link name="depth_link"></link> -->
 
-        <joint name="${frame_prefix}_to_camera_joint" type="fixed">
+        <!-- <joint name="${frame_prefix}_to_camera_joint" type="fixed">
             <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2} "/>
             <parent link="${frame_prefix}_link"/>
             <child link="depth_link"/>
@@ -120,7 +120,7 @@
         <gazebo reference="${frame_prefix}_link">
             <material>Gazebo/Yellow</material>
         </gazebo>
-    </xacro:macro>
+    </xacro:macro> -->
 
     <xacro:macro name="limo_imu" params="parent_prefix frame_prefix  *joint_pose">
         <link name='${frame_prefix}_link'>

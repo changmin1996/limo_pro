@@ -1,29 +1,39 @@
 import launch
 
 from launch import LaunchDescription
-from launch_ros.actions import Node
 
 from launch_ros.substitutions import FindPackageShare
 from launch.actions import IncludeLaunchDescription
-from launch.substitutions import PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution, LaunchConfiguration, TextSubstitution
+
+from launch.actions import DeclareLaunchArgument
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
+    degree = LaunchConfiguration('degree')
+
+    degree_launch_arg = DeclareLaunchArgument(
+        'degree',
+        default_value='0.0'
+    )
+
     return launch.LaunchDescription([
-        Node(
-             package='tf2_ros',
-             executable='static_transform_publisher',
-             name='base_link_to_camera',
-             arguments = ['--x', '0.012', 
-                          '--y', '-0.05',
-                          '--z', '0.033', 
-                          '--yaw', '0', 
-                          '--pitch', '0', 
-                          '--roll', '0', 
-                          '--frame-id', 'base_link', 
-                          '--child-frame-id', 'camera_link']
-        ),
+        degree_launch_arg,
+
         IncludeLaunchDescription(
             PathJoinSubstitution([FindPackageShare('limo_description'), 'launch', 'load_urdf.launch.py'])
+        ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('wego'),
+                    'launch', 
+                    'camera_tilt_launch.py'
+                    ])
+            ]),
+            launch_arguments={
+                'degree': degree
+            }.items()
         ),
         IncludeLaunchDescription(
             PathJoinSubstitution([FindPackageShare('limo_base'), 'launch', 'limo_base.launch.py'])
