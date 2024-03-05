@@ -218,7 +218,7 @@ void LimoDriver::processRxData(uint8_t data) {
             }
             else {
                 // std::cout << "Invalid frame! Check sum failed!" << std::endl;
-                RCLCPP_ERROR(this->get_logger(),"Invalid frame! Check sum failed! ");
+                RCLCPP_WARN(this->get_logger(),"Invalid frame! Check sum failed! ");
                 // ROS_ERROR("Invalid frame! Check sum failed!");  waring
             }
 
