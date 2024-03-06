@@ -14,7 +14,8 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
         (os.path.join('share', package_name, 'params'), glob(os.path.join('params', '*.yaml*'))),
-        (os.path.join('share', package_name, 'picture'), glob(os.path.join('picture', 'a')))
+        (os.path.join('share', package_name, 'picture'), glob(os.path.join('picture', 'a'))),
+        (os.path.join('share', package_name, 'rviz'), glob(os.path.join('rviz', '*rviz*')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -31,6 +32,7 @@ setup(
             'limo_control = limo_ros2_application.limo_control:main',
             'detect_hump = limo_ros2_application.detect_hump:main',
             'lets_take_a_picture = limo_ros2_application.lets_take_a_picture:main',
+            'move_to_pose = limo_ros2_application.move_to_pose:main',
         ],
     },
 )

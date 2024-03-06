@@ -105,10 +105,9 @@ public:
     tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
     it_ = std::make_unique<image_transport::ImageTransport>(shared_from_this());
+    // image_transport::TransportHints hints("raw", rmw_qos_profile_sensor_data);
     
-    image_transport::TransportHints hints("raw", rmw_qos_profile_sensor_data);
-    
-    image_sub_ = it_->subscribe("/image", 1, &ArucoMarkerPublisher::image_callback, this, hints);
+    image_sub_ = it_->subscribe("/image", 1, &ArucoMarkerPublisher::image_callback, this);
 
     this->get_parameter_or<bool>("use_camera_info", useCamInfo_, true);
     if (useCamInfo_) {
