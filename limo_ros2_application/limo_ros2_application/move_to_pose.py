@@ -68,7 +68,7 @@ class MoveToPose(Node):
         self.path.header.frame_id = 'odom'
 
     def control_limo(self):
-        # lisen the TF
+        # listen the TF
         try:
             t_ = self.tf_buffer.lookup_transform(
                 'base_link',

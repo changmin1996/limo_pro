@@ -20,6 +20,9 @@
   <exec_depend>builtin_interfaces</exec_depend>
   <exec_depend>wego_msgs</exec_depend>
 
+  <exec_depend>sensor_msgs_py</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
+  
   <export>
     <build_type>ament_python</build_type>
   </export>
