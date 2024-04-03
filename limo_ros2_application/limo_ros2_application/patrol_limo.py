@@ -5,18 +5,7 @@ from rclpy.action import ActionClient
 
 # module for navigation
 from nav2_msgs.action import NavigateToPose
-from limo_ros2_application.nav_pose import NavPose
-
-# for checking the navigation status
-from enum import Enum
-
-# you can check the limo status with enum class
-class NavigateStatus(Enum):
-    DEFAULT = 0
-    PENDING = 1
-    ACTIVE = 2
-    GOAL = 3
-    FAILED = 4
+from limo_ros2_application.nav_utils import NavPose, NavigateStatus
 
 class PatrolLimo(Node):
     def __init__(self):
@@ -24,9 +13,9 @@ class PatrolLimo(Node):
 
         # set action client
         self.action_client_ = ActionClient(
-                                self,
-                                NavigateToPose, 
-                                'navigate_to_pose')
+            self,
+            NavigateToPose, 
+            'navigate_to_pose')
         
         # set the patrol point
         pos_1 = NavPose()
