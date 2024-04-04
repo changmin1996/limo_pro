@@ -2,6 +2,8 @@ from geometry_msgs.msg import Pose
 from enum import Enum
 import numpy as np
 import math
+import tf_transformations
+import copy
 
 def quaternion_from_euler(a_1, a_2, a_3):
     # get roll, pitch, yaw and divide by 2
@@ -31,7 +33,8 @@ class NavPose:
     def __init__(self):
         self.pos_ = Pose()
         
-    def set_pose(self, x, y, theta):
+    def set_pose(self, x=0, y=0, theta=0): 
+        # set the initial pose
         self.pos_.position.x = x
         self.pos_.position.y = y
         q = quaternion_from_euler(0, 0, theta)
@@ -41,7 +44,29 @@ class NavPose:
         self.pos_.orientation.w = q[3]
 
     def get_pose(self):
-        return self.pos_
+        # get pose
+        return copy.deepcopy(self.pos_)
+    
+    def set_relative(self, x=0, y=0, theta=0):
+        # set pose relatively 
+        # calculate coordinate
+        self.pos_.position.x = self.pos_.position.x + x
+        self.pos_.position.y = self.pos_.position.y + y
+
+        # calculate orientation
+        q_orig = [self.pos_.orientation.x,
+                 self.pos_.orientation.y, 
+                 self.pos_.orientation.z, 
+                 self.pos_.orientation.w]
+
+        q_rot = quaternion_from_euler(0, 0, theta)
+        q_new = tf_transformations.quaternion_multiply(q_orig, q_rot)
+
+        self.pos_.orientation.x = q_new[0]
+        self.pos_.orientation.y = q_new[1]
+        self.pos_.orientation.z = q_new[2]
+        self.pos_.orientation.w = q_new[3]
+        
 
 # you can check the limo status with enum class
 class NavigateStatus(Enum):
