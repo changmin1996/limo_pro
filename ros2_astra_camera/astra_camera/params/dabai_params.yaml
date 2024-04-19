@@ -22,7 +22,7 @@ depth_align: true
 serial_number: ""
 number_of_devices: 1
 # UVC 相机，目前只有 dabai, dabi DCW 需要 | UVC camera , only for dabai , dabai DCW serial
-uvc_camera.enable: false
+uvc_camera.enable: true
 uvc_camera.format: "mjpeg"
 uvc_camera.vid: 0x2bc5
 uvc_camera.pid: 0x050e
