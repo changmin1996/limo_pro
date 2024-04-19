@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
         (os.path.join('share', package_name, 'params'), glob(os.path.join('params', '*.yaml*'))),
-        (os.path.join('share', package_name, 'picture'), glob(os.path.join('picture', 'a'))),
+        (os.path.join('share', package_name, 'weight'), glob(os.path.join('weight', '*.h5*'))),
         (os.path.join('share', package_name, 'rviz'), glob(os.path.join('rviz', '*rviz*')))
     ],
     install_requires=['setuptools'],
@@ -35,6 +35,7 @@ setup(
             'move_to_pose = limo_ros2_application.move_to_pose:main',
             'patrol_limo = limo_ros2_application.patrol_limo:main',
             'drive_through_pose = limo_ros2_application.drive_through_pose:main',
+            'dl_detect_line = limo_ros2_application.dl_detect_line:main',
         ],
     },
 )
