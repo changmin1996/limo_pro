@@ -17,6 +17,9 @@ class DetectLine(Node):
         # CV bridge
         self.br = CvBridge()
 
+        # set node name
+        super().__init__('dl_detect_line')
+
         #set default weigh file path
         package_directory = get_package_share_directory('limo_ros2_application')
         folder_name = 'weight'
@@ -27,7 +30,6 @@ class DetectLine(Node):
         self.initModel()
 
         # Subscribe camera data
-        super().__init__('dl_detect_line')
         self.subscription = self.create_subscription(
                             Image,
                             '/camera/color/image_raw', 

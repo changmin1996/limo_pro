@@ -103,6 +103,11 @@ class DetectLine(Node):
             cy = int(M['m01']/M['m00'])
             cy = self.roi_y_l.value + cy
             self.image_ = cv2.circle(self.image_, (cx, cy), 10,(255, 0, 0), -1)
+            self.image_ = cv2.line(self.image_, 
+                        (self.reference_distance.value, 0),
+                        (self.reference_distance.value, 400),
+                        (0, 255, 0), 
+                        5)
             distance_to_ref = self.reference_distance.value -cx
         else: # When limo cannot find lane publish 0 data
             distance_to_ref = 0
