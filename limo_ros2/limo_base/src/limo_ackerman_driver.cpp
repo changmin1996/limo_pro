@@ -413,11 +413,11 @@ namespace WeGo{
             case AgileX::MODE_ACKERMANN: {
                 double R = (steering_angle == 0) ? std::numeric_limits<double>::infinity() : wheelbase_ / tan(steering_angle);
                 omega = (R == std::numeric_limits<double>::infinity()) ? 0 : linear_velocity / R;
-                
                 break;
             }
             default:{
                 RCLCPP_WARN(this->get_logger(),"Invalid motion mode you should change limo to ackermann mode!");
+                return;
                 break;
             }
         }

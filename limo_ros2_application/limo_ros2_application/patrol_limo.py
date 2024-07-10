@@ -20,15 +20,23 @@ class PatrolLimo(Node):
         # set the patrol point
         pos_1 = NavPose()
         pos_2 = NavPose()
-        pos_1.set_pose(0.0, 0.0, 0.0) # x, y, theta
-        pos_2.set_pose(1.0, 0.0, 3.14) # x, y, theta
+        pos_3 = NavPose()
+        pos_4 = NavPose()
+        pos_5 = NavPose()
+        pos_6 = NavPose()
+        pos_1.set_pose(0.885, -0.205, -1.57) # x, y, theta
+        pos_2.set_pose(0.855, -2.432, -3.14) # x, y, theta
+        pos_3.set_pose(-0.112, -2.438, 1.57)
+        pos_4.set_pose(-0.115, -1.042, -3.14)
+        pos_5.set_pose(-1.394114, -1.0083698, 1.57)
+        pos_6.set_pose(-1.2995, -0.1265, 0.0)
 
         # set the goal list
-        self.goal_list = [pos_1, pos_2]
+        self.goal_list = [pos_1, pos_2, pos_3, pos_4, pos_5, pos_6]
         self.index = 0
 
         # set timer, evry 1 sec run callback
-        self.timer = self.create_timer(1, self.timer_callback)
+        self.timer = self.create_timer(2.0, self.timer_callback)
 
         # to check navigation status first set default
         self.limo_state = NavigateStatus(0)
