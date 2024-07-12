@@ -35,6 +35,7 @@ setup(
             'drive_through_pose = limo_ros2_application.drive_through_pose:main',
             'dl_detect_line = limo_ros2_application.dl_detect_line:main',
             'detect_object = limo_ros2_application.detect_object:main',
+            'rotate_absolute = limo_ros2_application.rotate_absolue:main',
         ],
     },
 )

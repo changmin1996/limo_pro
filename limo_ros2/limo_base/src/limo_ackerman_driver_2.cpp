@@ -349,7 +349,7 @@ namespace WeGo{
         imu_msg.angular_velocity.z = imu_data_.gyro_z;
 
         tf2::Quaternion q;
-        q.setRPY(degToRad(imu_data_.pitch), degToRad(imu_data_.roll), degToRad(imu_data_.yaw));
+        q.setRPY(0.0, 0.0, degToRad(imu_data_.yaw));
 
         if (flag==0)
         {
@@ -408,24 +408,12 @@ namespace WeGo{
         double dt = stamp - last_stamp;
         last_stamp = stamp;
         double omega = 0;
-        double R = 0.0;
-
-        double vx = 0.0, vy = 0.0;
 
         switch (motion_mode_) {
             case AgileX::MODE_ACKERMANN: {
-                R = (steering_angle == 0) ? std::numeric_limits<double>::infinity() : wheelbase_ / tan(steering_angle);
+                double R = (steering_angle == 0) ? std::numeric_limits<double>::infinity() : wheelbase_ / tan(steering_angle);
                 // RCLCPP_WARN(this->get_logger(),"steering_angle %f", steering_angle);
                 omega = (R == std::numeric_limits<double>::infinity()) ? 0 : linear_velocity / R;
-
-                if(omega==0){
-                    vx = linear_velocity;
-                    vy = 0;
-                }
-                else{
-                    vx = R * sin(omega);
-                    vy = R * (1-cos(omega));
-                }
                 break;
             }
             default:{
@@ -434,19 +422,9 @@ namespace WeGo{
                 break;
             }
         }
-        
-
         theta_ += omega * dt;
-
-        while(theta_ <= -3.141592){
-            theta_ += 6.283184;
-        }
-        while(theta_ >= 3.141592){
-            theta_ -= 6.283184;
-        } 
-
-        position_x_ += cos(theta_) * vx * dt - sin(theta_) * vy * dt;
-        position_y_ += sin(theta_) * vx * dt + cos(theta_) * vy * dt;
+        position_x_ += linear_velocity * cos(theta_) * dt;
+        position_y_ += linear_velocity * sin(theta_) * dt;
 
         tf2::Quaternion limo_yaw;
         limo_yaw.setRPY(0,0,theta_);
@@ -479,8 +457,8 @@ namespace WeGo{
         odom_msg.pose.pose.position.z = 0.0;
         odom_msg.pose.pose.orientation = odom_quat;
 
-        odom_msg.twist.twist.linear.x = vx;
-        odom_msg.twist.twist.linear.y = vy;
+        odom_msg.twist.twist.linear.x = linear_velocity;
+        odom_msg.twist.twist.linear.y = 0.0;
         odom_msg.twist.twist.angular.z = omega;
 
         odom_msg.pose.covariance[0] = 0.1;

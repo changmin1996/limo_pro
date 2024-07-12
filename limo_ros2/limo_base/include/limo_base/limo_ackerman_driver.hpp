@@ -55,7 +55,7 @@ class LimoAckermanDriver : public rclcpp::Node
 
 
         // limo hardare
-        static constexpr double max_steering_angle_ = 0.25;
+        static constexpr double max_steering_angle_ = 0.42;
         static constexpr double max_inner_angle_ = 0.48869;  // 28 degree
         static constexpr double track_ = 0.172;           // m (left right wheel distance)
         static constexpr double wheelbase_ = 0.2;         // m (front rear wheel distance)

@@ -480,8 +480,7 @@ void LimoDriver::publishIMUData(double stamp) {
     imu_msg.angular_velocity.z = imu_data_.gyro_z;
 
     tf2::Quaternion q;
-    q.setRPY(0.0, 0.0, degToRad(imu_data_.yaw));
-
+    q.setRPY(degToRad(imu_data_.pitch), degToRad(imu_data_.roll), degToRad(imu_data_.yaw));
     if (flag==0)
     {
         double present_theta_ =imu_data_.yaw;
