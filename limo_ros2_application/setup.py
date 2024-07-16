@@ -28,7 +28,6 @@ setup(
             'limo_e_stop = limo_ros2_application.limo_e_stop:main',
             'detect_line = limo_ros2_application.detect_line:main',
             'limo_control = limo_ros2_application.limo_control:main',
-            'detect_hump = limo_ros2_application.detect_hump:main',
             'lets_take_a_picture = limo_ros2_application.lets_take_a_picture:main',
             'move_to_pose = limo_ros2_application.move_to_pose:main',
             'patrol_limo = limo_ros2_application.patrol_limo:main',
